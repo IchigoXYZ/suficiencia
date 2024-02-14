@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Trabajadores</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Listar Trabajadores</h2>
+        <h3>Trabajadores {{ tipo }}</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Carné de Identidad</th>
+                    <th>Dirección</th>
+                    {% if tipo == 'docente' %}
+                        <th>Categoría Docente</th>
+                        <th>Categoría Científica</th>
+                    {% elif tipo == 'no_docente' %}
+                        <th>Nivel de Escolaridad</th>
+                        <th>Ocupación</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for trabajador in trabajadores %}
+                    <tr>
+                        <td>{{ trabajador.nombre }}</td>
+                        <td>{{ trabajador.carnet_identidad }}</td>
+                        <td>{{ trabajador.direccion }}</td>
+                        {% if tipo == 'docente' %}
+                            <td>{{ trabajador.categoria_docente }}</td>
+                            <td>{{ trabajador.categoria_cientifica }}</td>
+                        {% elif tipo == 'no_docente' %}
+                            <td>{{ trabajador.nivel_escolaridad }}</td>
+                            <td>{{ trabajador.ocupacion }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

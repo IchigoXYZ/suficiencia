@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.crearTrabajador),
     path('eliminar/', views.eliminarTrabajador),
+    path('lista/', views.listar_trabajadores),
 ]
