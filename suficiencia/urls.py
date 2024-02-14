@@ -21,6 +21,6 @@ from recursos_humanos_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.crearTrabajador),
-    path('eliminar/', views.eliminarTrabajador),
+    path('eliminar/', views.eliminar_trabajador),
     path('lista/', views.listar_trabajadores),
 ]

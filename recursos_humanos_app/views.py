@@ -5,8 +5,17 @@ from django.shortcuts import render
 def crearTrabajador(request):
     return render(request, "crearTrabajador.html")
 
-def eliminarTrabajador(request):
-    return render(request, "eliminarTrabajador.html")   
+def eliminar_trabajador(request):
+    if request.method == 'POST':
+        carnet_identidad = request.POST.get('carnet_identidad')
+        try:
+            trabajador = Trabajador.objects.get(carnet_identidad=carnet_identidad)
+            trabajador.delete()
+            mensaje = f"El trabajador con carné de identidad {carnet_identidad} ha sido eliminado correctamente."
+        except Trabajador.DoesNotExist:
+            mensaje = f"No se encontró ningún trabajador con el carné de identidad {carnet_identidad}."
+        return render(request, 'eliminar_trabajador.html', {'mensaje': mensaje})
+    return render(request, 'eliminar_trabajador.html') 
 
 def listar_trabajadores(request):
     tipo_trabajador = request.GET.get('tipo_trabajador', None)
