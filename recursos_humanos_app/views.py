@@ -27,6 +27,8 @@ def listar_trabajadores(request):
             trabajadores = TrabajadorDocente.objects.all()
         elif tipo_trabajador == 'no_docente':
             trabajadores = TrabajadorNoDocente.objects.all()
+        elif tipo_trabajador == 'no_docente_ordenados':
+            trabajadores = TrabajadorNoDocente.objects.all().order_by('nombre')
 
     return render(request, 'listar_trabajadores.html', {'trabajadores': trabajadores})
 
