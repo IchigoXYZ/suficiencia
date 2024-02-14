@@ -19,12 +19,14 @@ def eliminar_trabajador(request):
     return render(request, 'eliminar_trabajador.html') 
 
 def listar_trabajadores(request):
-    tipo_trabajador = request.GET.get('tipo_trabajador', None)
     trabajadores = []
+    
+    if request.method == 'POST':
+        tipo_trabajador = request.POST.get('tipo_trabajador')
+        if tipo_trabajador == 'docente':
+            trabajadores = TrabajadorDocente.objects.all()
+        elif tipo_trabajador == 'no_docente':
+            trabajadores = TrabajadorNoDocente.objects.all()
 
-    if tipo_trabajador == 'docente':
-        trabajadores = TrabajadorDocente.objects.all()
-    elif tipo_trabajador == 'no_docente':
-        trabajadores = TrabajadorNoDocente.objects.all()
+    return render(request, 'listar_trabajadores.html', {'trabajadores': trabajadores})
 
-    return render(request, 'listarTrabajadores.html', {'trabajadores': trabajadores})
