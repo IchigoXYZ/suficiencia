@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2 class="mt-5">Listar Trabajadores</h2>
-        <form action="/listar_trabajadores/" method="post">
+        <form action="" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <label for="tipo_trabajador">Seleccione el tipo de trabajador:</label><br>
@@ -24,7 +24,7 @@
                     <th>Nombre</th>
                     <th>Carné de Identidad</th>
                     <th>Dirección</th>
-                    <!-- Aquí puedes agregar más columnas según sea necesario -->
+                    
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@
                     <td>{{ trabajador.nombre }}</td>
                     <td>{{ trabajador.carnet_identidad }}</td>
                     <td>{{ trabajador.direccion }}</td>
-                    <!-- Aquí puedes agregar más columnas según sea necesario -->
+                    
                 </tr>
                 {% endfor %}
             </tbody>
