@@ -32,3 +32,10 @@ def listar_trabajadores(request):
 
     return render(request, 'listar_trabajadores.html', {'trabajadores': trabajadores})
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+def login(request):
+    return render(request, 'login.html')
+
+
