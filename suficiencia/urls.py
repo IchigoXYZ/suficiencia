@@ -23,6 +23,6 @@ urlpatterns = [
     path('', views.crearTrabajador),
     path('eliminar/', views.eliminar_trabajador),
     path('lista/', views.listar_trabajadores),
-    path('login/', views.login),
+    path('login/', views.loguear),
     
 ]

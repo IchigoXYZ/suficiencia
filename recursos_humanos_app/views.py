@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import *
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.views.decorators.cache import cache_control
 
 # Create your views here.
 
@@ -32,10 +35,22 @@ def listar_trabajadores(request):
 
     return render(request, 'listar_trabajadores.html', {'trabajadores': trabajadores})
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 
-def login(request):
-    return render(request, 'login.html')
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def loguear(request):
+    mensage = ''
+    if request.method == 'POST':
+        user = request.POST['username']
+        passw = request.POST['password']
+        access = authenticate(username=user, password=passw)
+        if access is not None:
+            login(request, access)
+            
+            return redirect('/')
+        else:
+            mensage = "Nombre de usuario y/o contraseña inválidos"
+        
+    return render(request, 'login.html', {"error": mensage})
+
 
 
