@@ -24,5 +24,6 @@ urlpatterns = [
     path('eliminar/', views.eliminar_trabajador),
     path('lista/', views.listar_trabajadores),
     path('login/', views.loguear),
+    path('crear_usuario/', views.crear_usuario),
     
 ]

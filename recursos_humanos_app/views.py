@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.views.decorators.cache import cache_control
 
 # Create your views here.
@@ -53,4 +54,11 @@ def loguear(request):
     return render(request, 'login.html', {"error": mensage})
 
 
-
+def crear_usuario(request):
+    
+    if request.method == 'POST':
+        user = request.POST['username']
+        passw = request.POST['password']
+        User.objects.create_user(username=user, password=passw, is_staff=True)
+        
+    return render(request, 'login.html')
